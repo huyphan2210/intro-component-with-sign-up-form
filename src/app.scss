@@ -1,8 +1,18 @@
 main {
+  padding: 3rem 1rem;
   h1 {
     font-size: 2rem;
     color: var(--blue-1);
     margin-block: 0;
     text-align: center;
+  }
+  form {
+    margin-top: 3rem;
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+    }
   }
 }
