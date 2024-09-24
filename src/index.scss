@@ -7,8 +7,12 @@
   --blue-2: #094573;
   --dark-blue-1: #083358;
   --dark-blue-2: #062540;
+  --green-1: #1ebba8;
+  --green-2: #189485;
 
   --gray: #ababab;
+
+  --border-radius: 1rem;
 }
 
 body {
@@ -28,4 +32,12 @@ button,
 input,
 a {
   font-family: Poppins, sans-serif;
+  margin: 0;
+  padding: 0;
+  border-style: solid;
+  border-width: 0;
+}
+
+* {
+  transition: 0.3s;
 }
