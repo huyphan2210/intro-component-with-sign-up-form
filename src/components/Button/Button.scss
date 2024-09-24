@@ -1,0 +1,49 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-radius: var(--border-radius);
+
+  &.submit {
+    background-color: var(--blue-1);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-weight: 700;
+    border: solid 0.125rem var(--blue-1);
+    padding-block: 19px;
+
+    &:hover {
+      background-color: white;
+      color: var(--blue-1);
+    }
+  }
+
+  &.link {
+    border: solid 0.125rem var(--green-1);
+    font-size: 1rem;
+
+    a {
+      flex: 1;
+      text-decoration: none;
+      color: var(--green-1);
+      padding-block: 19px;
+    }
+
+    &:hover {
+      background-color: var(--green-1);
+      a {
+        color: white;
+      }
+    }
+  }
+
+  &:disabled {
+    background-color: var(--gray);
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
