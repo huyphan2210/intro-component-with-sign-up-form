@@ -1,5 +1,6 @@
 import "./app.scss";
 import Button from "./components/Button/Button";
+import Input from "./components/Input/Input";
 
 export function App() {
   const heading = "Learn to code by watching others";
@@ -13,7 +14,12 @@ export function App() {
     <main>
       <h1>{heading}</h1>
       <form onSubmit={handleSubmit}>
-        <section className="fields"></section>
+        <section className="input-group">
+          <Input labelText="First Name" inputType="text" placeholderText="John" />
+          <Input labelText="Last Name" inputType="text" placeholderText="Doe" />
+          <Input labelText="Email" inputType="email" placeholderText="johndoe@yopmail.com" />
+          <Input labelText="Password" inputType="password" placeholderText="***" />
+        </section>
         <section className="terms"></section>
         <section className="btn-group">
           <Button isForSubmitting>{submitBtnContent}</Button>
