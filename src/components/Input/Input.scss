@@ -1,0 +1,40 @@
+.input-component {
+  color: var(--blue-1);
+
+  .label-group {
+    margin-bottom: 0.25rem;
+    label {
+      font-size: 0.75rem;
+    }
+  }
+
+  .input {
+    width: calc(100% - 2.125rem);
+    padding: 1rem;
+    border: solid 1px var(--dark-blue-1);
+    border-radius: var(--border-radius);
+    transition: none;
+    position: relative;
+    display: flex;
+    gap: 1rem;
+
+    input {
+      color: var(--blue-1);
+      font-size: 1rem;
+      outline: none;
+      flex: 1;
+    }
+  }
+
+  &:focus-within {
+    .label-group {
+      label {
+        font-weight: 700;
+      }
+    }
+
+    .input {
+      outline: solid 0.125rem var(--dark-blue-1);
+    }
+  }
+}

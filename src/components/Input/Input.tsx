@@ -1,6 +1,9 @@
 import { FC, HTMLInputTypeAttribute } from "preact/compat";
 import "./Input.scss";
 
+import emailSvg from "../../assets/icons/email.svg";
+import passwordSvg from "../../assets/icons/password.svg";
+
 interface InputProps {
   labelText: string;
   placeholderText: string;
@@ -9,9 +12,29 @@ interface InputProps {
 
 const Input: FC<InputProps> = ({ inputType, labelText, placeholderText }) => {
   return (
-    <div class="input">
-      <label htmlFor={labelText}>{labelText}</label>
-      <input id={labelText} type={inputType} placeholder={placeholderText} />
+    <div className="input-component">
+      <div className="label-group">
+        <label htmlFor={labelText}>{labelText}</label>
+      </div>
+      <div className="input">
+        <input id={labelText} type={inputType} placeholder={placeholderText} />
+        {inputType === "email" && (
+          <img
+            className="icon--email"
+            src={emailSvg}
+            loading="lazy"
+            alt="Email Icon"
+          />
+        )}
+        {inputType === "password" && (
+          <img
+            className="icon--password"
+            src={passwordSvg}
+            loading="lazy"
+            alt="Password Icon"
+          />
+        )}
+      </div>
     </div>
   );
 };
