@@ -1,0 +1,36 @@
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  input {
+    display: none;
+  }
+
+  .checkbox {
+    width: 1rem;
+    height: 1rem;
+    background-color: white;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    img {
+      opacity: 0;
+    }
+
+    &.checked {
+      background-color: var(--blue-1);
+      img {
+        opacity: 1;
+      }
+    }
+  }
+
+  label {
+    display: block;
+    font-size: 0.75rem;
+  }
+}
