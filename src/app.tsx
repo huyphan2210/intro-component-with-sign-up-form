@@ -10,6 +10,8 @@ interface Condition extends CheckboxProps {
 
 export function App() {
   const heading = "Learn to code by watching others";
+  const paragraph =
+    "See how experienced developers solve problems in real-time. Watching scripted tutorials is great, but understanding how developers think is invaluable";
   const submitBtnContent = "Claim your free trial";
 
   const handleSubmit = (e: SubmitEvent) => {
@@ -51,7 +53,10 @@ export function App() {
 
   return (
     <main>
-      <h1>{heading}</h1>
+      <hgroup>
+        <h1>{heading}</h1>
+        <p>{paragraph}</p>
+      </hgroup>
       <form onSubmit={handleSubmit}>
         <section className="input-group">
           <Input
@@ -81,9 +86,9 @@ export function App() {
           </ul>
         </section>
         <section className="btn-group">
-          <Button isForSubmitting>{submitBtnContent}</Button>
+          <Button isForSubmitting isDisabled>{submitBtnContent}</Button>
           <span>or</span>
-          <Button isForSubmitting={false}>
+          <Button isForSubmitting={false} isDisabled={false}>
             <a href="https://huy-phan-portfolio.netlify.app/" target="_blank">
               Try it free for 7 days
             </a>
