@@ -24,6 +24,7 @@ const Checkbox: FC<CheckboxProps> = ({ label, children }) => {
     <div className="checkbox-group">
       <input id={label} type="checkbox" onChange={handleCheckbox} />
       <button
+        type="button"
         onClick={handleCustomCheckbox}
         className={`checkbox${checked ? " checked" : ""}`}
       >
