@@ -17,7 +17,12 @@ const Input: FC<InputProps> = ({ inputType, labelText, placeholderText }) => {
         <label htmlFor={labelText}>{labelText}</label>
       </div>
       <div className="input">
-        <input id={labelText} type={inputType} placeholder={placeholderText} />
+        <input
+          id={labelText}
+          type={inputType}
+          placeholder={placeholderText}
+          autoComplete={inputType === "email" ? "current-password" : ""}
+        />
         {inputType === "email" && (
           <img
             className="icon--email"
