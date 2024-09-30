@@ -1,7 +1,7 @@
 .checkbox-group {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: start;
+  gap: 0.625rem;
 
   input {
     display: none;
@@ -32,5 +32,18 @@
   label {
     display: block;
     font-size: 0.75rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .checkbox-group {
+    .checkbox {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    label {
+      font-size: 1rem;
+    }
   }
 }
