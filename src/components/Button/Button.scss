@@ -40,7 +40,13 @@
 
   &:disabled {
     background-color: var(--gray);
-    cursor: not-allowed;
+    border-color: var(--gray);
+
+    &:hover {
+      cursor: not-allowed;
+      background-color: var(--gray);
+      color: white;
+    }
   }
 
   &:hover {
