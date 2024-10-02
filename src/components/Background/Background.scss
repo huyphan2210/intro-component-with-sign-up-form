@@ -1,0 +1,51 @@
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  display: flex;
+  gap: 5rem;
+  opacity: 15%;
+
+  .code-1-list,
+  .code-2-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    animation: scroll1 100s linear infinite;
+    img {
+      width: 7.5rem;
+    }
+  }
+
+  .code-2-list {
+    justify-content: flex-end;
+    animation: scroll2 100s linear infinite;
+  }
+}
+
+@keyframes scroll1 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll2 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
