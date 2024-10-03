@@ -36,5 +36,26 @@
     .input {
       outline: solid 0.125rem var(--dark-blue-1);
     }
+
+    &.error {
+      .input {
+        outline-color: var(--error);
+      }
+    }
+  }
+
+  &.error {
+    .label-group {
+      color: var(--error);
+    }
+
+    .input {
+      border-color: var(--error);
+      outline-color: var(--error);
+
+      input {
+        color: var(--error);
+      }
+    }
   }
 }
