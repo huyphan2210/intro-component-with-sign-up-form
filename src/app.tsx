@@ -1,9 +1,8 @@
+import { ReactElement } from "preact/compat";
 import "./app.scss";
 import Button from "./components/Button/Button";
 import Checkbox, { CheckboxProps } from "./components/Checkbox/Checkbox";
 import Input from "./components/Input/Input";
-import codeIcon from "./assets/icons/code-background-1.svg";
-import { ReactElement } from "preact/compat";
 import Background from "./components/Background/Background";
 
 interface Condition extends CheckboxProps {
@@ -13,7 +12,7 @@ interface Condition extends CheckboxProps {
 export function App() {
   const heading = "Learn to code by watching others";
   const paragraph =
-    "See how experienced developers solve problems in real-time. Watching scripted tutorials is great, but understanding how developers think is invaluable";
+    "See how experienced developers solve problems in real-time. Watching scripted tutorials is great, but understanding how developers think is invaluable.";
   const submitBtnContent = "Claim your free trial";
 
   const handleSubmit = (e: SubmitEvent) => {
