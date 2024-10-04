@@ -1,10 +1,17 @@
 .input-component {
+  position: relative;
   color: var(--blue-1);
 
   .label-group {
     margin-bottom: 0.25rem;
     label {
+      transition: none;
       font-size: 0.75rem;
+
+      &:last-child {
+        text-align: right;
+        font-weight: 700;
+      }
     }
   }
 
@@ -42,11 +49,18 @@
         outline-color: var(--error);
       }
     }
+
+    .input-tooltip {
+      opacity: 1;
+      z-index: 0;
+    }
   }
 
   &.error {
     .label-group {
       color: var(--error);
+      display: flex;
+      justify-content: space-between;
     }
 
     .input {
@@ -56,6 +70,33 @@
       input {
         color: var(--error);
       }
+    }
+  }
+
+  .input-tooltip {
+    position: fixed;
+    color: var(--dark-blue-2);
+    top: 3rem;
+    left: 50%;
+    transform: translate(-50%);
+    width: fit-content;
+    padding: 1rem;
+    background-color: white;
+    opacity: 0;
+    border-radius: var(--border-radius);
+    box-shadow: 0.125rem 0 1rem #ababab;
+    z-index: -1;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .input-component {
+    .input-tooltip {
+      position: absolute;
+      left: unset;
+      bottom: 0;
+      right: calc(100% + 2rem);
     }
   }
 }
