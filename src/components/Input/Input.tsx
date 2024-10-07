@@ -1,5 +1,6 @@
 import {
   ChangeEvent,
+  Dispatch,
   FC,
   HTMLInputTypeAttribute,
   JSX,
@@ -9,11 +10,14 @@ import "./Input.scss";
 
 import emailSvg from "../../assets/icons/email.svg";
 import passwordSvg from "../../assets/icons/password.svg";
+import { StateUpdater } from "preact/hooks";
+import { IIsFormDataValid } from "../../app";
 
 interface InputProps {
   labelText: string;
   placeholderText: string;
   inputType: HTMLInputTypeAttribute;
+  setIsFormDataValid: Dispatch<StateUpdater<IIsFormDataValid>>;
 }
 
 const errorTextRecords: Record<string, string> = {
@@ -23,16 +27,47 @@ const errorTextRecords: Record<string, string> = {
 };
 
 const toolTipContent: Record<string, JSX.Element> = {
-  email: <></>,
-  password: <></>,
-  text: <span>This field allows text only</span>,
+  password: (
+    <ul className="password-requirements">
+      <li>Minimum of 8 characters</li>
+      <li>At least one uppercase letter</li>
+      <li>At least one lowercase letter</li>
+      <li>At least one digit</li>
+      <li>At least one special character (e.g., @, #, !, etc.)</li>
+    </ul>
+  ),
 };
 
-const Input: FC<InputProps> = ({ inputType, labelText, placeholderText }) => {
+const Input: FC<InputProps> = ({
+  inputType,
+  labelText,
+  placeholderText,
+  setIsFormDataValid,
+}) => {
   const [isValid, setIsValid] = useState(true);
+
+  const validFormDataHandlerRecord: Record<string, (isValid: boolean) => void> =
+    {
+      email: (isValid: boolean) => {
+        setIsFormDataValid((prev) => ({ ...prev, email: isValid }));
+      },
+      password: (isValid: boolean) => {
+        setIsFormDataValid((prev) => ({ ...prev, password: isValid }));
+      },
+      text: (isValid: boolean) => {
+        if (labelText === "First Name") {
+          setIsFormDataValid((prev) => ({ ...prev, firstName: isValid }));
+        } else {
+          if (labelText === "Last Name") {
+            setIsFormDataValid((prev) => ({ ...prev, lastName: isValid }));
+          }
+        }
+      },
+    };
 
   const regexHandler = (regex: RegExp, value: string) => {
     setIsValid(regex.test(value));
+    validFormDataHandlerRecord[inputType](regex.test(value));
   };
 
   const validationHandler: Record<string, (value: string) => void> = {
@@ -86,7 +121,11 @@ const Input: FC<InputProps> = ({ inputType, labelText, placeholderText }) => {
           />
         )}
       </div>
-      <div className="input-tooltip">{toolTipContent[inputType]}</div>
+      {toolTipContent[inputType] && (
+        <div className={`input-tooltip${!isValid ? " show" : ""}`}>
+          {toolTipContent[inputType]}
+        </div>
+      )}
     </div>
   );
 };
