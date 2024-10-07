@@ -1,4 +1,4 @@
-import { ReactElement } from "preact/compat";
+import { ReactElement, useState } from "preact/compat";
 import "./app.scss";
 import Button from "./components/Button/Button";
 import Checkbox, { CheckboxProps } from "./components/Checkbox/Checkbox";
@@ -7,6 +7,13 @@ import Background from "./components/Background/Background";
 
 interface Condition extends CheckboxProps {
   content: ReactElement;
+}
+
+export interface IIsFormDataValid {
+  firstName: boolean;
+  lastName: boolean;
+  email: boolean;
+  password: boolean;
 }
 
 export function App() {
@@ -18,6 +25,15 @@ export function App() {
   const handleSubmit = (e: SubmitEvent) => {
     e.preventDefault();
   };
+
+  const [isFormDataValid, setIsFormDataValid] = useState<IIsFormDataValid>({
+    firstName: false,
+    lastName: false,
+    email: false,
+    password: false,
+  });
+
+  const isFormValid = Object.values(isFormDataValid).every(Boolean);
 
   const conditionList: Condition[] = [
     {
@@ -66,21 +82,25 @@ export function App() {
               labelText="First Name"
               inputType="text"
               placeholderText="John"
+              setIsFormDataValid={setIsFormDataValid}
             />
             <Input
               labelText="Last Name"
               inputType="text"
               placeholderText="Doe"
+              setIsFormDataValid={setIsFormDataValid}
             />
             <Input
               labelText="Email"
               inputType="email"
               placeholderText="johndoe@yopmail.com"
+              setIsFormDataValid={setIsFormDataValid}
             />
             <Input
               labelText="Password"
               inputType="password"
               placeholderText="***"
+              setIsFormDataValid={setIsFormDataValid}
             />
           </section>
           <section className="term-group">
@@ -93,7 +113,7 @@ export function App() {
             </ul>
           </section>
           <section className="btn-group">
-            <Button isForSubmitting isDisabled>
+            <Button isForSubmitting isDisabled={isFormValid}>
               {submitBtnContent}
             </Button>
             <span>or</span>
