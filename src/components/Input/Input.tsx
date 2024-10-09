@@ -21,8 +21,8 @@ interface InputProps {
 }
 
 const errorTextRecords: Record<string, string> = {
-  email: "The email is invalid",
-  password: "The password is invalid",
+  email: "Invalid email",
+  password: "Invalid password",
   text: "This field requires text only",
 };
 
