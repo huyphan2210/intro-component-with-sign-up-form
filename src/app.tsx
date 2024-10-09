@@ -14,6 +14,7 @@ export interface IIsFormDataValid {
   lastName: boolean;
   email: boolean;
   password: boolean;
+  terms: boolean;
 }
 
 export function App() {
@@ -31,6 +32,7 @@ export function App() {
     lastName: false,
     email: false,
     password: false,
+    terms: false,
   });
 
   const isFormValid = Object.values(isFormDataValid).every(Boolean);
@@ -105,15 +107,30 @@ export function App() {
           </section>
           <section className="term-group">
             <ul>
-              {conditionList.map(({ label, content }) => (
-                <li>
-                  <Checkbox label={label}>{content}</Checkbox>
-                </li>
-              ))}
+              {conditionList.map(({ label, content }) => {
+                if (label === "terms") {
+                  return (
+                    <li>
+                      <Checkbox
+                        label={label}
+                        setIsFormDataValid={setIsFormDataValid}
+                      >
+                        {content}
+                      </Checkbox>
+                    </li>
+                  );
+                } else {
+                  return (
+                    <li>
+                      <Checkbox label={label}>{content}</Checkbox>
+                    </li>
+                  );
+                }
+              })}
             </ul>
           </section>
           <section className="btn-group">
-            <Button isForSubmitting isDisabled={isFormValid}>
+            <Button isForSubmitting isDisabled={!isFormValid}>
               {submitBtnContent}
             </Button>
             <span>or</span>
