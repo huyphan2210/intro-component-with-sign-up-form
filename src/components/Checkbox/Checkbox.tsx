@@ -1,13 +1,20 @@
-import { FC, useState } from "preact/compat";
+import { Dispatch, FC, useState } from "preact/compat";
 import "./Checkbox.scss";
 
 import checkmark from "../../assets/icons/checkmark.svg";
+import { StateUpdater } from "preact/hooks";
+import { IIsFormDataValid } from "../../app";
 
 export interface CheckboxProps {
   label: string;
+  setIsFormDataValid?: Dispatch<StateUpdater<IIsFormDataValid>>;
 }
 
-const Checkbox: FC<CheckboxProps> = ({ label, children }) => {
+const Checkbox: FC<CheckboxProps> = ({
+  label,
+  children,
+  setIsFormDataValid,
+}) => {
   const [checked, setChecked] = useState(false);
   const handleCheckbox = () => {
     const checkbox = document.getElementById(label) as HTMLInputElement;
@@ -18,6 +25,9 @@ const Checkbox: FC<CheckboxProps> = ({ label, children }) => {
     const checkbox = document.getElementById(label) as HTMLInputElement;
     checkbox.checked = !checkbox.checked;
     setChecked(checkbox.checked);
+    if (setIsFormDataValid && label === "terms") {
+      setIsFormDataValid((prev) => ({ ...prev, terms: checkbox.checked }));
+    }
   };
 
   return (
