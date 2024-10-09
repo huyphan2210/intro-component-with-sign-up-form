@@ -38,48 +38,16 @@ const Background: FC = () => {
     setCodeList(codeListArray);
   };
 
-  // const addAndRemoveIcons = () => {
-  //   const code1List = document.getElementsByClassName(
-  //     "code-1-list"
-  //   ) as HTMLCollectionOf<HTMLDivElement>;
-
-  //   const code2List = document.getElementsByClassName(
-  //     "code-2-list"
-  //   ) as HTMLCollectionOf<HTMLDivElement>;
-
-  //   const code1Element = document.createElement("img");
-  //   code1Element.src = codeIcon1;
-  //   code1Element.loading = "lazy";
-  //   code1Element.alt = "Code Icon 1";
-
-  //   const code2Element = document.createElement("img");
-  //   code2Element.src = codeIcon2;
-  //   code2Element.loading = "lazy";
-  //   code2Element.alt = "Code Icon 1";
-
-  //   for (let i = 0; i < code1List.length; i++) {
-  //     code1List[i].appendChild(code1Element);
-  //     code2List[i].appendChild(code2Element);
-  //   }
-
-  //   code1List[0].remove();
-  //   code2List[0].remove();
-  // };
-
   const animationHandler = () => {
     resizeHandler();
-
-    // setTimeout(() => {
-    //   addAndRemoveIcons();
-    // }, 1000);
   };
 
   useEffect(() => {
     resizeHandler();
-    document.addEventListener("resize", animationHandler);
+    window.addEventListener("resize", animationHandler);
 
     return () => {
-      document.removeEventListener("resize", animationHandler);
+      window.removeEventListener("resize", animationHandler);
     };
   }, []);
   return (
