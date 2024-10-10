@@ -18,7 +18,19 @@ export interface IIsFormDataValid {
 }
 
 export function App() {
-  const heading = "Learn to code by watching others";
+  const heading = (
+    <>
+      <span>
+        <text>Learn to code </text>
+      </span>{" "}
+      <span>
+        <text>by</text>
+      </span>{" "}
+      <span>
+        <text>watching others</text>
+      </span>
+    </>
+  );
   const paragraph =
     "See how experienced developers solve problems in real-time. Watching scripted tutorials is great, but understanding how developers think is invaluable.";
   const submitBtnContent = "Claim your free trial";

@@ -15,6 +15,30 @@ main {
       font-size: 2rem;
       color: var(--blue-1);
       margin-block: 0;
+
+      span {
+        overflow: hidden;
+        display: inline-block;
+        text {
+          display: block;
+          animation: moveRight 1s ease-in-out forwards;
+          animation-delay: 1s;
+          transform: translateX(-100%);
+        }
+        &:first-child {
+          text {
+            animation: moveUp 1s ease-in-out forwards;
+            transform: translateY(-100%);
+          }
+        }
+        &:last-child {
+          text {
+            animation: moveDown 1s ease-in-out forwards;
+            transform: translateY(100%);
+            animation-delay: 2s;
+          }
+        }
+      }
     }
 
     p {
@@ -76,5 +100,32 @@ main {
         font-size: 5rem;
       }
     }
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
