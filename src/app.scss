@@ -1,10 +1,17 @@
+header {
+  padding: 2rem 1rem;
+  min-height: 7.5rem;
+}
+
 main {
-  padding: 3rem 1rem;
+  padding: 0 1rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3rem;
   flex: 1;
+  opacity: 0;
+  animation: appear 1s ease-in-out forwards 4s;
 
   hgroup {
     text-align: center;
@@ -21,21 +28,19 @@ main {
         display: inline-block;
         text {
           display: block;
-          animation: moveRight 1s ease-in-out forwards;
-          animation-delay: 1s;
+          animation: moveRight 0.5s ease-in-out 5.5s forwards;
           transform: translateX(-100%);
         }
         &:first-child {
           text {
-            animation: moveUp 1s ease-in-out forwards;
+            animation: moveUp 0.5s ease-in-out 5s forwards;
             transform: translateY(-100%);
           }
         }
         &:last-child {
           text {
-            animation: moveDown 1s ease-in-out forwards;
+            animation: moveDown 0.5s ease-in-out 6s forwards;
             transform: translateY(100%);
-            animation-delay: 2s;
           }
         }
       }
@@ -87,6 +92,10 @@ main {
 }
 
 @media screen and (min-width: 1024px) {
+  header {
+    padding: 2rem 5rem 0;
+  }
+
   main {
     padding: 0 5rem;
     flex-direction: row;
@@ -127,5 +136,15 @@ main {
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

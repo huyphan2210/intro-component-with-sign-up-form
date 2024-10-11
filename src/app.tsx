@@ -4,6 +4,7 @@ import Button from "./components/Button/Button";
 import Checkbox, { CheckboxProps } from "./components/Checkbox/Checkbox";
 import Input from "./components/Input/Input";
 import Background from "./components/Background/Background";
+import Logo from "./components/Logo/Logo";
 
 interface Condition extends CheckboxProps {
   content: ReactElement;
@@ -84,8 +85,10 @@ export function App() {
 
   return (
     <>
-      <Background />
+      <Logo />
+      <header></header>
       <main>
+        <Background />
         <hgroup>
           <h1>{heading}</h1>
           <p>{paragraph}</p>
