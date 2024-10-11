@@ -1,0 +1,65 @@
+.logo {
+  width: 10rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  animation: moveFromCenterToTopMobile 2s ease-in-out 2s forwards;
+
+  path {
+    &:nth-child(3),
+    &:nth-child(4) {
+      animation: slideIn 2s ease-in-out forwards;
+    }
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveFromCenterToTopMobile {
+  0% {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(2);
+  }
+
+  100% {
+    position: absolute;
+    transform: translate(0, 0) scale(1);
+    top: 2rem;
+    left: 1rem;
+  }
+}
+
+@keyframes moveFromCenterToTopDesktop {
+  0% {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(2);
+  }
+
+  100% {
+    position: absolute;
+    transform: translate(0, 0) scale(1);
+    top: 2rem;
+    left: 5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .logo {
+    width: 15rem;
+    animation: moveFromCenterToTopDesktop 2s ease-in-out 2s forwards;
+  }
+}
