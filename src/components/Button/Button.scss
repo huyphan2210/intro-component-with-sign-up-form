@@ -20,20 +20,21 @@
   }
 
   &.link {
+    background-color: var(--green-1);
     border: solid 0.125rem var(--green-1);
     font-size: 1rem;
 
     a {
+      color: white;
       flex: 1;
       text-decoration: none;
-      color: var(--green-1);
       padding-block: 19px;
     }
 
     &:hover {
-      background-color: var(--green-1);
+      background-color: white;
       a {
-        color: white;
+        color: var(--green-1);
       }
     }
   }
