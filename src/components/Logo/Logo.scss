@@ -1,10 +1,20 @@
+:root {
+ --left: 1rem;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --left: 5rem;
+  }
+}
+
 .logo {
   width: 10rem;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) scale(2);
-  animation: moveFromCenterToTopMobile 2s ease-in-out 2s forwards;
+  animation: moveFromCenterToTop 2s ease-in-out 2s forwards;
 
   path {
     &:nth-child(3),
@@ -25,7 +35,7 @@
   }
 }
 
-@keyframes moveFromCenterToTopMobile {
+@keyframes moveFromCenterToTop{
   0% {
     position: absolute;
     left: 50%;
@@ -37,29 +47,12 @@
     position: absolute;
     transform: translate(0, 0) scale(1);
     top: 2rem;
-    left: 1rem;
-  }
-}
-
-@keyframes moveFromCenterToTopDesktop {
-  0% {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) scale(2);
-  }
-
-  100% {
-    position: absolute;
-    transform: translate(0, 0) scale(1);
-    top: 2rem;
-    left: 5rem;
+    left: var(--left);
   }
 }
 
 @media screen and (min-width: 1024px) {
   .logo {
     width: 15rem;
-    animation: moveFromCenterToTopDesktop 2s ease-in-out 2s forwards;
   }
 }
