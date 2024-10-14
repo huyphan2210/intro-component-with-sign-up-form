@@ -23,7 +23,7 @@ interface InputProps {
 const errorTextRecords: Record<string, string> = {
   email: "Invalid email",
   password: "Invalid password",
-  text: "This field requires text only",
+  text: "Use characters in the alphabet",
 };
 
 const toolTipContent: Record<string, JSX.Element> = {
