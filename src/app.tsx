@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "preact/compat";
+import { ReactElement, useEffect, useState } from "preact/compat";
 import "./app.scss";
 import Button from "./components/Button/Button";
 import Checkbox, { CheckboxProps } from "./components/Checkbox/Checkbox";
@@ -19,6 +19,7 @@ export interface IIsFormDataValid {
 }
 
 export function App() {
+  const [isContentRevealed, setisContentRevealed] = useState<boolean>(false);
   const heading = (
     <>
       <span>
@@ -49,7 +50,6 @@ export function App() {
   });
 
   const isFormValid = Object.values(isFormDataValid).every(Boolean);
-
   const conditionList: Condition[] = [
     {
       label: "terms",
@@ -83,80 +83,90 @@ export function App() {
     },
   ];
 
+  useEffect(() => {
+    setTimeout(() => setisContentRevealed(true), 4000);
+  }, []);
   return (
     <>
       <Logo />
-      <header></header>
-      <main>
-        <Background />
-        <hgroup>
-          <h1>{heading}</h1>
-          <p>{paragraph}</p>
-        </hgroup>
-        <form onSubmit={handleSubmit}>
-          <section className="input-group">
-            <Input
-              labelText="First Name"
-              inputType="text"
-              placeholderText="John"
-              setIsFormDataValid={setIsFormDataValid}
-            />
-            <Input
-              labelText="Last Name"
-              inputType="text"
-              placeholderText="Doe"
-              setIsFormDataValid={setIsFormDataValid}
-            />
-            <Input
-              labelText="Email"
-              inputType="email"
-              placeholderText="johndoe@yopmail.com"
-              setIsFormDataValid={setIsFormDataValid}
-            />
-            <Input
-              labelText="Password"
-              inputType="password"
-              placeholderText="***"
-              setIsFormDataValid={setIsFormDataValid}
-            />
-          </section>
-          <section className="term-group">
-            <ul>
-              {conditionList.map(({ label, content }) => {
-                if (label === "terms") {
-                  return (
-                    <li>
-                      <Checkbox
-                        label={label}
-                        setIsFormDataValid={setIsFormDataValid}
-                      >
-                        {content}
-                      </Checkbox>
-                    </li>
-                  );
-                } else {
-                  return (
-                    <li>
-                      <Checkbox label={label}>{content}</Checkbox>
-                    </li>
-                  );
-                }
-              })}
-            </ul>
-          </section>
-          <section className="btn-group">
-            <Button isForSubmitting isDisabled={!isFormValid}>
-              {submitBtnContent}
-            </Button>
-            <span>or</span>
-            <Button isForSubmitting={false} isDisabled={false}>
-              <a href="https://huy-phan-portfolio.netlify.app/" target="_blank">
-                Try it free for 7 days
-              </a>
-            </Button>
-          </section>
-        </form>
-      </main>
+      {isContentRevealed && (
+        <>
+          <header></header>
+          <main>
+            <Background />
+            <hgroup>
+              <h1>{heading}</h1>
+              <p>{paragraph}</p>
+            </hgroup>
+            <form onSubmit={handleSubmit}>
+              <section className="input-group">
+                <Input
+                  labelText="First Name"
+                  inputType="text"
+                  placeholderText="John"
+                  setIsFormDataValid={setIsFormDataValid}
+                />
+                <Input
+                  labelText="Last Name"
+                  inputType="text"
+                  placeholderText="Doe"
+                  setIsFormDataValid={setIsFormDataValid}
+                />
+                <Input
+                  labelText="Email"
+                  inputType="email"
+                  placeholderText="johndoe@yopmail.com"
+                  setIsFormDataValid={setIsFormDataValid}
+                />
+                <Input
+                  labelText="Password"
+                  inputType="password"
+                  placeholderText="***"
+                  setIsFormDataValid={setIsFormDataValid}
+                />
+              </section>
+              <section className="term-group">
+                <ul>
+                  {conditionList.map(({ label, content }) => {
+                    if (label === "terms") {
+                      return (
+                        <li>
+                          <Checkbox
+                            label={label}
+                            setIsFormDataValid={setIsFormDataValid}
+                          >
+                            {content}
+                          </Checkbox>
+                        </li>
+                      );
+                    } else {
+                      return (
+                        <li>
+                          <Checkbox label={label}>{content}</Checkbox>
+                        </li>
+                      );
+                    }
+                  })}
+                </ul>
+              </section>
+              <section className="btn-group">
+                <Button isForSubmitting isDisabled={!isFormValid}>
+                  {submitBtnContent}
+                </Button>
+                <span>or</span>
+                <Button isForSubmitting={false} isDisabled={false}>
+                  <a
+                    href="https://huy-phan-portfolio.netlify.app/"
+                    target="_blank"
+                  >
+                    Try it free for 7 days
+                  </a>
+                </Button>
+              </section>
+            </form>
+          </main>
+        </>
+      )}
     </>
   );
 }

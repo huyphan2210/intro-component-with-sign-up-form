@@ -11,7 +11,7 @@ main {
   gap: 3rem;
   flex: 1;
   opacity: 0;
-  animation: appear 1s ease-in-out forwards 4s;
+  animation: appear 1s ease-in-out forwards;
 
   hgroup {
     text-align: center;
@@ -28,18 +28,18 @@ main {
         display: inline-block;
         text {
           display: block;
-          animation: moveRight 0.5s ease-in-out 5.5s forwards;
+          animation: moveRight 0.5s ease-in-out 1.5s forwards;
           transform: translateX(-100%);
         }
         &:first-child {
           text {
-            animation: moveUp 0.5s ease-in-out 5s forwards;
+            animation: moveUp 0.5s ease-in-out 1s forwards;
             transform: translateY(-100%);
           }
         }
         &:last-child {
           text {
-            animation: moveDown 0.5s ease-in-out 6s forwards;
+            animation: moveDown 0.5s ease-in-out 2s forwards;
             transform: translateY(100%);
           }
         }
@@ -93,7 +93,7 @@ main {
 
 @media screen and (min-width: 1024px) {
   header {
-    padding: 2rem 5rem 0;
+    display: none;
   }
 
   main {
