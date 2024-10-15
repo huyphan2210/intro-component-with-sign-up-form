@@ -118,7 +118,7 @@ main {
   }
 
   main {
-    padding: 0 5rem;
+    padding: 0 5rem 5rem;
     flex-direction: row;
     justify-content: space-between;
     gap: 3rem;
@@ -127,7 +127,7 @@ main {
       text-align: start;
       max-width: 39.25rem;
       h1 {
-        font-size: 5rem;
+        font-size: clamp(2rem, 4vw, 5rem);
       }
     }
   }
