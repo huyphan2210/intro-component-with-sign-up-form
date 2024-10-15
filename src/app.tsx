@@ -5,7 +5,11 @@ import Checkbox, { CheckboxProps } from "./components/Checkbox/Checkbox";
 import Input from "./components/Input/Input";
 import Background from "./components/Background/Background";
 import Logo from "./components/Logo/Logo";
+import Contact from "./components/Contact/Contact";
+import ConfirmBox from "./components/ConfirmBox/ConfirmBox";
 
+import confirm from "./assets/icons/confirm.svg";
+import confirmDesktop from "./assets/icons/confirm-desktop.svg";
 interface Condition extends CheckboxProps {
   content: ReactElement;
 }
@@ -19,7 +23,10 @@ export interface IIsFormDataValid {
 }
 
 export function App() {
-  const [isContentRevealed, setisContentRevealed] = useState<boolean>(false);
+  const [isContentRevealed, setisContentRevealed] = useState(false);
+  const [isConfirmBoxRevealed, setIsConfirmBoxRevealed] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isConfirmedTrial, setIsConfirmedTrial] = useState(false);
   const heading = (
     <>
       <span>
@@ -37,8 +44,18 @@ export function App() {
     "See how experienced developers solve problems in real-time. Watching scripted tutorials is great, but understanding how developers think is invaluable.";
   const submitBtnContent = "Claim your free trial";
 
-  const handleSubmit = (e: SubmitEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e?: SubmitEvent) => {
+    e?.preventDefault();
+    if (!isConfirmBoxRevealed) {
+      setIsConfirmBoxRevealed(true);
+      return;
+    } else {
+      setIsConfirmBoxRevealed(false);
+      setIsFormSubmitted(true);
+      setTimeout(() => {
+        setIsConfirmedTrial(true);
+      }, 1000);
+    }
   };
 
   const [isFormDataValid, setIsFormDataValid] = useState<IIsFormDataValid>({
@@ -91,14 +108,19 @@ export function App() {
       <Logo />
       {isContentRevealed && (
         <>
-          <header></header>
-          <main>
+          <header>
+            <Contact />
+          </header>
+          <main className={isConfirmBoxRevealed ? "no-pointer-event" : ""}>
             <Background />
             <hgroup>
               <h1>{heading}</h1>
               <p>{paragraph}</p>
             </hgroup>
-            <form onSubmit={handleSubmit}>
+            <form
+              onSubmit={handleSubmit}
+              className={`${isFormSubmitted ? "fade-out" : ""}`}
+            >
               <section className="input-group">
                 <Input
                   labelText="First Name"
@@ -164,7 +186,21 @@ export function App() {
                 </Button>
               </section>
             </form>
+            {isConfirmedTrial && (
+              <img
+                className="submitted-img"
+                src={window.innerWidth >= 1024 ? confirmDesktop : confirm}
+                loading="lazy"
+                alt="Confirm trial"
+              />
+            )}
           </main>
+          {isConfirmBoxRevealed && (
+            <ConfirmBox
+              handleSubmit={handleSubmit}
+              setIsConfirmBoxRevealed={setIsConfirmBoxRevealed}
+            />
+          )}
         </>
       )}
     </>

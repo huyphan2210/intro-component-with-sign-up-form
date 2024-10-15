@@ -1,0 +1,70 @@
+.confirm-box {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  max-width: 24.25rem;
+  text-align: center;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0.25rem 1rem 0 var(--gray);
+  animation: fadeIn 0.3s ease-in-out;
+
+  h3 {
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .btn-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      font-size: 1rem;
+      padding: 0.5rem 2rem;
+      font-weight: 500;
+      color: white;
+      background-color: var(--blue-1);
+      border-radius: 1rem;
+      border: solid 0.125rem var(--blue-1);
+
+      &:first-child {
+        background-color: #f7f7f7;
+        color: var(--yellow-1);
+        border: solid 0.125rem #f7f7f7;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: white;
+        color: var(--blue-1);
+
+        &:first-child {
+          background-color: var(--yellow-1);
+          color: #f7f7f7;
+        }
+      }
+    }
+  }
+
+  &.fading-out {
+    top: 55%;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    top: 55%;
+  }
+  100% {
+    opacity: 1;
+    top: 50%;
+  }
+}

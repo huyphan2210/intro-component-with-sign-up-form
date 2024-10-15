@@ -1,6 +1,12 @@
 header {
+  position: relative;
   padding: 2rem 1rem;
   min-height: 7.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  animation: appear 1s ease-in-out forwards;
+  z-index: 1;
 }
 
 main {
@@ -10,7 +16,6 @@ main {
   align-items: center;
   gap: 3rem;
   flex: 1;
-  opacity: 0;
   animation: appear 1s ease-in-out forwards;
 
   hgroup {
@@ -83,17 +88,35 @@ main {
       gap: 0.5rem;
       align-items: center;
     }
+
+    &.fade-out {
+      animation: disappear 1s ease-in-out forwards;
+    }
+  }
+
+  .submitted-img {
+    opacity: 0;
+    max-width: 100%;
+    animation: confirmFadeIn 1s ease-in-out forwards;
   }
 
   .brand-name {
     color: var(--dark-blue-1);
     font-weight: 700;
   }
+
+  &.no-pointer-event {
+    pointer-events: none;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   header {
-    display: none;
+    position: absolute;
+    top: 2rem;
+    right: 5rem;
+    min-height: unset;
+    padding: 0;
   }
 
   main {
@@ -141,10 +164,35 @@ main {
 
 @keyframes appear {
   0% {
+    display: flex;
     opacity: 0;
   }
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10%);
+    display: none;
+  }
+}
+
+@keyframes confirmFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
